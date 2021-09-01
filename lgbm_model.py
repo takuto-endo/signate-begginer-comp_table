@@ -153,7 +153,7 @@ class lgb_model:
 if __name__ == '__main__':
 
     # データの取得・表示
-    all_df = pd.read_csv("../input/all_df.csv")
+    all_df = pd.read_csv("path to all DataFrame file")
     print(all_df.head())
 
     # rain_test分割
