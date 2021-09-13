@@ -1,3 +1,4 @@
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -6,7 +7,7 @@ import lightgbm as lgb
 from sklearn.model_selection import KFold
 from sklearn.metrics import roc_auc_score
 
-class lgb_model:
+class Lgb_model:
     def __init__(self):
         self.num_boost_round = 1000
         self.params = {
@@ -41,7 +42,7 @@ class lgb_model:
             self.params["weight_list"] = weight_list
 
         # 性能評価用およびモデル保存用の変数を宣言
-        folds=5
+        folds = 5
         fold_count = np.zeros(5)# foldごとのモデル数
         seed_count = np.zeros(16)# random seedごとのモデル数
         all_aucs = []# スコアを保存(シード単位)
@@ -156,7 +157,7 @@ if __name__ == '__main__':
     all_df = pd.read_csv("path to all DataFrame file")
     print(all_df.head())
 
-    # rain_test分割
+    # train_test分割
     train_data = all_df[~all_df["y"].isnull()]
     test_data = all_df[all_df["y"].isnull()]
 
@@ -167,7 +168,7 @@ if __name__ == '__main__':
     categories = ['month', 'season', 'job', 'marital', 'education', 'default', 'housing', 'loan', 'contact', 'poutcome', 'comb_fea']
 
     # 学習
-    model = lgb_model()
+    model = Lgb_model()
     model.train(train_X, train_Y, categories, has_weights=True, show_importance=True)
     pred = model.predict(test_X)
 
